@@ -38,14 +38,6 @@ public class Steps extends SetUpForPage {
         open(url);
     }
 
-    @Given("the user has entered login, password")
-    public void loginIntoSystem() {
-        MainPage.enteringLogin();
-        MainPage.enterUserName(login);
-        MainPage.enterPassord(password);
-        MainPage.pressEnterButton();
-    }
-
     @Given("the user choose item")
     public void ChooseItemLowPrice() {
         MainPage.SelectItem();
@@ -70,27 +62,29 @@ public class Steps extends SetUpForPage {
     
 
     @When("user buy item, that costs less then 1500 uah")
-    public void whenEnteredValidData() {
+    public void whenEnteredValidData() throws InterruptedException {
         LowPricePage.buyFirstItem();
         PopUpPage.buyItem();
         CheckOutPage.enterUserName(user);
         CheckOutPage.enterCity();
         CheckOutPage.enterPhone(phone);
         CheckOutPage.enterNext();
+        DeliveryStepPage.SetDelivery();
     }
     
     @When("user buy item, that costs more or equal than 1500 uah")
-    public void whenEnteredValidDataMore1500() {
+    public void whenEnteredValidDataMore1500() throws InterruptedException {
         LowPricePage.buyFirstItem();
         PopUpPage.buyItem();
         CheckOutPage.enterUserName(user);
         CheckOutPage.enterCity();
         CheckOutPage.enterPhone(phone);
         CheckOutPage.enterNext();
+        DeliveryStepPage.SetDelivery();
     }
     
     @When("user buy item, that costs more or equal than 20000 uah")
-    public void whenEnteredValidDataMore20000() {
+    public void whenEnteredValidDataMore20000() throws InterruptedException {
         LowPricePage.buyFirstItem();
         PopUpPage.AddQuontity(qty);
         PopUpPage.buyItem();
@@ -98,10 +92,11 @@ public class Steps extends SetUpForPage {
         CheckOutPage.enterCity();
         CheckOutPage.enterPhone(phone);
         CheckOutPage.enterNext();
+        DeliveryStepPage.SetDelivery();
     }
     
     @Then("delivery will cost: $examplesTable")
-    public void ExpectingErrorMessage(ExamplesTable examplesTable) {
+    public void ExpectingErrorMessage(ExamplesTable examplesTable) throws InterruptedException {
         message = examplesTable.getRow(0);
         assertTrue(DeliveryStepPage.DeliveryStatus(message.get("message")));
     }

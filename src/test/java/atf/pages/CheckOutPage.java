@@ -18,21 +18,24 @@ public class CheckOutPage extends SetUpForPage {
     private static By Next = By.xpath("//*[@id='step_contacts']/div/div[1]/div[3]/div/span/button");
 
     public static void enterUserName(String user) {
-        assertTrue(IsEditable(Name));
+        assertTrue(IsPresent(Name));
         driver.findElement(Name).sendKeys(user);
     }
     
     public static void enterCity() {
+    	assertTrue(IsPresent(City));
         driver.findElement(City).click();
+        assertTrue(IsPresent(FirstChoose));
         driver.findElement(FirstChoose).click();
     }
     
     public static void enterPhone(String phone) {
-        assertTrue(IsEditable(Phone));
+        assertTrue(IsPresent(Phone));
         driver.findElement(Phone).sendKeys(phone);
     }
 
     public static DeliveryStepPage enterNext() {
+    	assertTrue(IsPresent(Next));
         driver.findElement(Next).click();
         return new DeliveryStepPage();
     }

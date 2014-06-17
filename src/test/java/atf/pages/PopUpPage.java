@@ -17,13 +17,14 @@ public class PopUpPage extends SetUpForPage {
     private static By Check = By.xpath("//*[@id='cart-popup']/div/div/div[1]/div[2]/div/div[4]/div/a/img");
 
     public static CheckOutPage buyItem(){
+    	assertTrue(IsPresent(Checkout));
         driver.findElement(Checkout).click();
         return new CheckOutPage();
     }
     
     public static void AddQuontity(String qty){
+    	assertTrue(IsPresent(Quontity));
         driver.findElement(Quontity).clear();
-        assertTrue(IsEditable(Quontity));
         driver.findElement(Quontity).sendKeys(qty);
         driver.findElement(Check).click();
     }

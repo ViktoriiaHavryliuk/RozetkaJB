@@ -11,12 +11,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class SetUpForPage {
-	
-	//private static final String BASE_URL = "http://evbyminsd7238.minsk.epam.com:8080/pdrzh/main";
-	
+		
 	protected static WebDriver driver;
 		
-	public static boolean IsEditable(By element)
+	public static boolean IsPresent(By element)
 	{
 		boolean value = false;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
